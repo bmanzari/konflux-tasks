@@ -42,8 +42,8 @@ The pipeline consists of the following tasks:
 | BUNDLE_NS | Namespace to use if installing bundle image |  | false |
 | PULL_SECRET | Secret created by the user in https://vault.ci.openshift.org/ in the test-credential namespace with the field .dockerconfigjson; necessary for private images |  | false |
 | ENVS | Optional environment variables to inject into the test; separated by commas; e.g. VAR1=val1,VAR2=val2 |  | false |
-| MAX_RETRIES | Maximum number of retries to trigger the prowjob | 3 | false |
-| RETRY_DELAY | Time in seconds to wait between retry attempts | 20 | false |
+| MAX_RETRIES | Maximum number of retries to trigger the prowjob | 5 | false |
+| RETRY_DELAY | Time in seconds to wait between retry attempts | 60 | false |
 
 
 

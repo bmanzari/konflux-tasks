@@ -37,8 +37,8 @@ The pipeline consists of the following tasks:
 | INCLUDE_IMAGES | Bool flag whether to include the `images` stanza in the ci-operator config | 0 | false |
 | INCLUDE_OPERATOR | Bool flag whether to include the `operator` stanza in the ci-operator config | 0 | false |
 | ENVS | Comma-separated list of additional environment variables to pass to the prowjob, e.g. TEST_ENV=example,ANOTHER_ENV=example2 |  | false |
-| MAX_RETRIES | Maximum number of retries to trigger the prowjob | 3 | false |
-| RETRY_DELAY | Time in seconds to wait between retry attempts | 20 | false |
+| MAX_RETRIES | Maximum number of retries to trigger the prowjob | 5 | false |
+| RETRY_DELAY | Time in seconds to wait between retry attempts | 60 | false |
 
 ## ⚙️ How It Works
 Patch ci-operator Config:

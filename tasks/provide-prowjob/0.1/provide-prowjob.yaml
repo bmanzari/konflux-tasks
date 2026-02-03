@@ -46,11 +46,11 @@ spec:
   - name: MAX_RETRIES
     description: 'Maximum number of retries to trigger the prowjob'
     type: string
-    default: "3"
+    default: "5"
   - name: RETRY_DELAY
     description: 'Time in seconds to wait between retry attempts'
     type: string
-    default: "20"
+    default: "60"
   results:
   - name: PROWJOB_ID
     description: The triggered prowjob id
