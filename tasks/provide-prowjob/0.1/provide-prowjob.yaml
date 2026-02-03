@@ -43,6 +43,14 @@ spec:
     type: string
     default: ''
     description: 'Optional environment variables to inject into the test; separated by commas; e.g. VAR1=val1,VAR2=val2'
+  - name: MAX_RETRIES
+    description: 'Maximum number of retries to trigger the prowjob'
+    type: string
+    default: "5"
+  - name: RETRY_DELAY
+    description: 'Time in seconds to wait between retry attempts'
+    type: string
+    default: "60"
   results:
   - name: PROWJOB_ID
     description: The triggered prowjob id
@@ -97,6 +105,10 @@ spec:
       value: $(params.INCLUDE_OPERATOR)
     - name: ENVS
       value: $(params.ENVS)
+    - name: MAX_RETRIES
+      value: $(params.MAX_RETRIES)
+    - name: RETRY_DELAY
+      value: $(params.RETRY_DELAY)
     script: |
       #!/usr/bin/env bash
 
@@ -196,7 +208,6 @@ spec:
           }')
 
       # Triggering PJ via gangway and getting ID/URL
-      MAX_RETRIES=3
       RETRY_COUNT=0
       while true; do
         curl -s -X POST -H "Authorization: Bearer $GANGWAY_TOKEN" \
@@ -212,8 +223,8 @@ spec:
           echo "👉 Probably expired gangway token or Gangway service is down."
           exit 1
         fi
-        echo "Retry $RETRY_COUNT/$MAX_RETRIES: Failed to trigger prowjob, retrying in 10 seconds..."
-        sleep 20
+        echo "Retry $RETRY_COUNT/$MAX_RETRIES: Failed to trigger prowjob, retrying in $RETRY_DELAY seconds..."
+        sleep "$RETRY_DELAY"
       done
 
       # Getting the prowjob spyglass URL
