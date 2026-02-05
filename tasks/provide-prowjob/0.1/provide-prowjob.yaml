@@ -82,9 +82,7 @@ spec:
         fieldRef:
           fieldPath: metadata.labels['pac.test.appstudio.openshift.io/sha']
     - name: TARGET_BRANCH
-      valueFrom:
-        fieldRef:
-          fieldPath: metadata.annotations['pac.test.appstudio.openshift.io/branch']
+      value: $(params.TARGET_BRANCH)
     - name: COMPONENT_NAME
       valueFrom:
         fieldRef:
